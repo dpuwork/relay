@@ -107,7 +107,7 @@ func WriteHeader(w io.Writer, h *Header) error {
 
 	// 4. Write Opcode-specific payloads
 	switch h.Opcode {
-	case OpRegControl, h.Opcode & OpClientConn: // handles both OpRegControl and OpClientConn
+	case OpRegControl, OpClientConn: // handles both OpRegControl and OpClientConn
 		tokenLen := uint16(len(h.Token))
 		if err := binary.Write(w, binary.BigEndian, tokenLen); err != nil {
 			return err
